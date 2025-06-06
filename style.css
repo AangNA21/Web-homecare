@@ -1,0 +1,509 @@
+:root {
+    --primary-blue: #3E80C7;
+    --light-cream: #FDF9F2;
+    --text-dark: #333;
+    --text-light: #666;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-cream);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px 0;
+    margin-bottom: 50px;
+    position: relative; /* Penting untuk positioning popup-nav */
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    width: 30px;
+    height: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.hamburger-menu .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-dark);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger Menu active state (transforms into an X) */
+.hamburger-menu.open .bar:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.hamburger-menu.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.open .bar:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* Pop-up Navigation Menu */
+.popup-nav {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 9;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.popup-nav.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.popup-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    white-space: nowrap;
+}
+
+.popup-nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 600;
+    font-size: 0.95em;
+    padding: 8px 15px;
+    border-radius: 15px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.popup-nav ul li a:hover {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex; /* Default display untuk hero section */
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    min-height: calc(100vh - 150px);
+    gap: 40px;
+    padding: 40px 0;
+}
+
+/* --- Gaya untuk Bagian Artikel Kesehatan --- */
+.articles-section {
+    display: none; /* Sembunyikan secara default */
+    padding: 40px 20px;
+    text-align: center;
+    min-height: calc(100vh - 150px);
+}
+
+.articles-section.active {
+    display: block; /* Tampilkan saat aktif */
+}
+
+.articles-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+}
+
+.poster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.poster-item {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.poster-item:hover {
+    transform: translateY(-5px);
+}
+
+.poster-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* --- Gaya untuk Bagian Daftar Perawat --- */
+.nurses-section {
+    display: none; /* Sembunyikan secara default */
+    padding: 40px 20px;
+    text-align: center;
+    min-height: calc(100vh - 150px);
+}
+
+.nurses-section.active {
+    display: block; /* Tampilkan saat aktif */
+}
+
+.nurses-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 40px;
+}
+
+.nurses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+.nurse-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.nurse-card:hover {
+    transform: translateY(-5px);
+}
+
+.nurse-card img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.nurse-card .nurse-name {
+    font-weight: 600;
+    color: var(--primary-blue);
+    font-size: 1.1em;
+    text-align: center;
+}
+
+/* Hero Content Left */
+.hero-content-left {
+    text-align: center;
+    flex: 1;
+    max-width: 500px;
+}
+
+.welcome-text {
+    font-size: 1.2em;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.brand-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4em;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    white-space: nowrap;
+}
+
+/* Gaya untuk logo Kazoku Homecare */
+.brand-logo {
+    width: 60px; /* Sesuaikan lebar logo Anda */
+    height: auto; /* Memastikan rasio aspek terjaga */
+    margin-right: 15px; /* Jarak antara logo dan teks nama */
+    vertical-align: middle; /* Membantu menyelaraskan logo dengan teks */
+}
+
+/* Gaya untuk tombol "Daftar" (sekarang tag <a>) */
+.daftar-button {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-decoration: none; /* Penting untuk menghilangkan underline pada link */
+    display: inline-block; /* Agar padding dan margin berfungsi seperti blok */
+}
+
+.daftar-button:hover {
+    background-color: #316BB5;
+    transform: translateY(-2px);
+}
+
+/* Hero Content Right - Image Stack */
+.hero-content-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.image-stack {
+    position: relative;
+    width: 350px;
+    height: 400px;
+    margin-bottom: 50px;
+}
+
+.stacked-image {
+    position: absolute;
+    width: 250px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 8px solid white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, z-index 0.3s ease;
+}
+
+.stacked-image:hover {
+    transform: scale(1.03) rotate(0deg) !important;
+    z-index: 5;
+}
+
+/* Positioning and Rotation for each image */
+.img-1 {
+    top: 20px;
+    left: 0;
+    transform: rotate(-10deg);
+    z-index: 3;
+}
+
+.img-2 {
+    top: 60px;
+    right: 0;
+    transform: rotate(5deg);
+    z-index: 2;
+}
+
+.img-3 {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(0deg);
+    z-index: 4;
+}
+
+/* Background Doodles */
+.doodle {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 50%;
+    opacity: 0.7;
+    z-index: 0;
+}
+
+.doodle-1 {
+    width: 150px;
+    height: 150px;
+    top: 5%;
+    left: 10%;
+    background-color: rgba(173, 216, 230, 0.2);
+}
+
+.doodle-2 {
+    width: 80px;
+    height: 80px;
+    top: 15%;
+    right: 5%;
+}
+
+.doodle-3 {
+    width: 60px;
+    height: 60px;
+    bottom: 5%;
+    left: 20%;
+    background-color: rgba(255, 160, 122, 0.1);
+}
+
+.doodle-4 {
+    width: 200px;
+    height: 200px;
+    bottom: -50px;
+    right: -50px;
+    border: 2px solid rgba(0, 0, 0, 0.05);
+    background-color: transparent;
+}
+
+.doodle-5 {
+    width: 40px;
+    height: 40px;
+    top: 40%;
+    left: 5%;
+}
+
+.doodle-6 {
+    width: 100px;
+    height: 100px;
+    top: 60%;
+    right: 15%;
+    background-color: rgba(200, 200, 200, 0.1);
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .hero-section {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .hero-content-left {
+        text-align: left;
+    }
+
+    .brand-name {
+        justify-content: flex-start;
+    }
+
+    .image-stack {
+        margin-bottom: 0;
+    }
+
+    .doodle-1 {
+        left: 5%;
+    }
+    .doodle-2 {
+        right: 10%;
+    }
+    .doodle-3 {
+        left: 10%;
+    }
+    .articles-section h2 {
+        font-size: 3em;
+    }
+    .nurses-section h2 {
+        font-size: 3em;
+    }
+    .nurses-grid {
+        grid-template-columns: repeat(3, minmax(180px, 1fr)); /* 3 kolom di layar sedang */
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 40px;
+    }
+
+    .hero-section {
+        min-height: calc(100vh - 80px);
+    }
+
+    .brand-name {
+        font-size: 5em;
+    }
+
+    /* Sesuaikan ukuran logo untuk layar besar */
+    .brand-logo {
+        width: 80px; /* Sesuaikan ukuran logo untuk layar besar */
+        margin-right: 20px;
+    }
+
+    .stacked-image {
+        width: 300px;
+        height: 220px;
+    }
+
+    .image-stack {
+        width: 450px;
+        height: 500px;
+    }
+
+    .img-1 {
+        top: 30px;
+        left: 20px;
+        transform: rotate(-15deg);
+    }
+
+    .img-2 {
+        top: 80px;
+        right: 20px;
+        transform: rotate(8deg);
+    }
+
+    .img-3 {
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%) rotate(0deg);
+    }
+    /* Posisi pop-up menu untuk layar yang lebih besar, jika perlu disesuaikan */
+    .popup-nav {
+        top: 60px;
+        left: 40px;
+    }
+    .articles-section h2 {
+        font-size: 3.5em;
+    }
+    .poster-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 kolom di layar besar */
+    }
+    .nurses-section h2 {
+        font-size: 3.5em;
+    }
+    .nurses-grid {
+        grid-template-columns: repeat(3, minmax(200px, 1fr));
+        max-width: 1200px;
+    }
+}
